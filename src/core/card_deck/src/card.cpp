@@ -1,4 +1,4 @@
-#include "card/card.hpp"
+#include "card_deck/card.hpp"
 
 namespace Core {
     Card::Card(const Int id, std::string front, std::string back) :

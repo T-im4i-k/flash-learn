@@ -2,7 +2,7 @@
 #include <chrono>
 #include <random>
 
-#include "deck/deck.hpp"
+#include "card_deck/deck.hpp"
 
 namespace Core {
     Deck::Deck(const Int id, const std::initializer_list<Card> cards_list) :

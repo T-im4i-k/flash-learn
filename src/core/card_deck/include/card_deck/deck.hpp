@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "alias/alias.hpp"
-#include "card/card.hpp"
+#include "card_deck/card.hpp"
 
 namespace Core {
     class Deck {

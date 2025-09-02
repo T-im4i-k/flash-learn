@@ -37,7 +37,7 @@
             "description": "Release build with default config",
             "configurePreset": "default-release-config",
             "targets": [
-                "cpp_cmake_template"
+                "flash_learn"
             ],
             "cleanFirst": true,
             "jobs": 8

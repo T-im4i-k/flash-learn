@@ -4,12 +4,12 @@
 
 #include "deck/deck.hpp"
 
-namespace Cards {
-    Deck::Deck(const Aliases::Integer id,
-               const std::initializer_list<Card> cards_list) :
-        id_(id), cards_vector_(cards_list), random_engine_(std::random_device{}()) {}
+namespace Core {
+    Deck::Deck(const Integer id, const std::initializer_list<Card> cards_list) :
+        id_(id), cards_vector_(cards_list),
+        random_engine_(std::random_device{}()) {}
 
-    Aliases::Integer Deck::getId() const { return id_; }
+    Integer Deck::getId() const { return id_; }
 
     Deck::DeckIt Deck::erase(const DeckIt it) {
         return cards_vector_.erase(it);
@@ -33,4 +33,4 @@ namespace Cards {
         std::ranges::shuffle(cards_vector_, random_engine_);
     }
 
-} // namespace Cards
+} // namespace Core

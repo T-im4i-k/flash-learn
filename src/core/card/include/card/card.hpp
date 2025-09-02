@@ -4,12 +4,12 @@
 
 #include "alias/alias.hpp"
 
-namespace Cards {
+namespace Core {
     class Card {
     public:
-        Card(Aliases::Integer id, std::string front, std::string back);
+        Card(Integer id, std::string front, std::string back);
 
-        [[nodiscard]] Aliases::Integer getId() const;
+        [[nodiscard]] Integer getId() const;
 
         [[nodiscard]] const std::string &getFront() const;
 
@@ -20,8 +20,8 @@ namespace Cards {
         void setBack(std::string back);
 
     private:
-        Aliases::Integer id_;
+        Integer id_;
         std::string front_;
         std::string back_;
     };
-} // namespace Cards
+} // namespace Core

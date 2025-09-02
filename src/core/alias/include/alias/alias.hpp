@@ -2,6 +2,6 @@
 
 #include <cstdint>
 
-namespace Aliases {
+namespace Core {
     using Integer = std::int64_t;
-} // namespace Aliases
+} // namespace Core

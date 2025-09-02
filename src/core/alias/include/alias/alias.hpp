@@ -3,5 +3,6 @@
 #include <cstdint>
 
 namespace Core {
-    using Integer = std::int64_t;
+    using Int = std::int64_t;
+    using UInt = std::uint64_t;
 } // namespace Core

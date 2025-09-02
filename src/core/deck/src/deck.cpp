@@ -5,11 +5,11 @@
 #include "deck/deck.hpp"
 
 namespace Core {
-    Deck::Deck(const Integer id, const std::initializer_list<Card> cards_list) :
+    Deck::Deck(const Int id, const std::initializer_list<Card> cards_list) :
         id_(id), cards_vector_(cards_list),
         random_engine_(std::random_device{}()) {}
 
-    Integer Deck::getId() const { return id_; }
+    Int Deck::getId() const { return id_; }
 
     Deck::DeckIt Deck::erase(const DeckIt it) {
         return cards_vector_.erase(it);

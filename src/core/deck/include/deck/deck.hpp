@@ -12,9 +12,9 @@ namespace Core {
         using DeckIt = std::vector<Card>::iterator;
         using ConstDeckIt = std::vector<Card>::const_iterator;
 
-        explicit Deck(Integer id, std::initializer_list<Card> cards_list = {});
+        explicit Deck(Int id, std::initializer_list<Card> cards_list = {});
 
-        [[nodiscard]] Integer getId() const;
+        [[nodiscard]] Int getId() const;
 
         DeckIt erase(DeckIt it);
 
@@ -35,7 +35,7 @@ namespace Core {
         void shuffle();
 
     private:
-        Integer id_;
+        Int id_;
         std::vector<Card> cards_vector_;
         std::mt19937_64 random_engine_;
     };

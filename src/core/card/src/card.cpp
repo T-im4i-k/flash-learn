@@ -1,10 +1,10 @@
 #include "card/card.hpp"
 
 namespace Core {
-    Card::Card(const Integer id, std::string front, std::string back) :
+    Card::Card(const Int id, std::string front, std::string back) :
         id_(id), front_(std::move(front)), back_(std::move(back)) {}
 
-    Integer Card::getId() const { return id_; }
+    Int Card::getId() const { return id_; }
 
     const std::string &Card::getFront() const { return front_; }
 

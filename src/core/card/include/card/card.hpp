@@ -7,9 +7,9 @@
 namespace Core {
     class Card {
     public:
-        Card(Integer id, std::string front, std::string back);
+        Card(Int id, std::string front, std::string back);
 
-        [[nodiscard]] Integer getId() const;
+        [[nodiscard]] Int getId() const;
 
         [[nodiscard]] const std::string &getFront() const;
 
@@ -20,7 +20,7 @@ namespace Core {
         void setBack(std::string back);
 
     private:
-        Integer id_;
+        Int id_;
         std::string front_;
         std::string back_;
     };

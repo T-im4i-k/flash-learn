@@ -33,6 +33,9 @@ out/
 *.exe
 *.out
 
+# Testing Directories
+Testing/
+
 #####################
 # Os-specific Files #
 #####################

@@ -10,7 +10,7 @@ namespace DB {
 
         static bool createTable();
 
-        static bool addCard(Core::Int deckId, const QString & front, const QString & back);
+        static Core::Int addCard(Core::Int deckId, const QString & front, const QString & back);
 
         static bool removeCard(Core::Int deckId, Core::Int cardId);
 

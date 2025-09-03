@@ -12,7 +12,7 @@ int main(int argc, char **argv) {
 
     QCoreApplication app(argc, argv);
 
-    DB::DBManager::getInstance().open(":memory:");
+    DB::DBManager::open(":memory:");
     DB::SchemaInitializer::initialize();
 
     assert(DB::DeckRepository::addDeck("Spanish A2"));
@@ -30,10 +30,10 @@ int main(int argc, char **argv) {
     Core::Deck response(0, "", "");
     DB::CardRepository::selectCardsByDeck(response);
 
-    assert(!response.empty());
+    assert(!response.cardVector().empty());
 
-    for (const auto& card : response) {
-        assert(card.getFront() == result.front());
+    for (const auto& card : response.cardVector()) {
+        assert(card.front() == result.front());
         result.pop();
     }
 

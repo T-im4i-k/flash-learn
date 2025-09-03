@@ -1,8 +1,6 @@
 #pragma once
 
-#include <cstdint>
-
 namespace Core {
-    using Int = std::int64_t;
-    using UInt = std::uint64_t;
+    using Int = int;
+    using UInt = unsigned int;
 } // namespace Core

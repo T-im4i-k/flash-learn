@@ -1,0 +1,4 @@
+add_executable(test_card_deck test_card_deck.cpp)
+target_link_libraries(test_card_deck PRIVATE card_deck)
+
+add_test(NAME test_card_deck COMMAND test_card_deck)

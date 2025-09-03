@@ -1,6 +1,3 @@
-#include <iostream>
+#include "launcher/launcher.hpp"
 
-int main() {
-    std::cout << "Hello there!" << std::endl;
-    return 0;
-}
+int main(int argc, char **argv) { return Gui::Launcher::start(argc, argv); }

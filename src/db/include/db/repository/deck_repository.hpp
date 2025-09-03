@@ -2,7 +2,8 @@
 
 #include <QString>
 
-#include "db/entity/deck_entity.hpp"
+#include "card_deck/deck.hpp"
+
 
 namespace DB {
     class DeckRepository {
@@ -12,9 +13,9 @@ namespace DB {
 
         static bool addDeck(const QString& title, const QString& description = "");
 
-        static bool removeDeck(int deckId);
+        static bool removeDeck(Core::Int deckId);
 
-        static QList<DeckEntity> selectAllDecks();
+        static QList<Core::Deck> selectAllDecks();
 
     };
 } // namespace DB

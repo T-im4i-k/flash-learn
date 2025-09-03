@@ -10,11 +10,11 @@ namespace DB {
 
         static bool createTable();
 
-        static bool addCard(int deckId, const QString & front, const QString & back);
+        static bool addCard(Core::Int deckId, const QString & front, const QString & back);
 
-        static bool removeCard(int deckId, int cardId);
+        static bool removeCard(Core::Int deckId, Core::Int cardId);
 
-        static Core::Deck selectCardsByDeckId(int deckId);
+        static bool selectCardsByDeck(Core::Deck & deck);
 
     };
 } // namespace DB

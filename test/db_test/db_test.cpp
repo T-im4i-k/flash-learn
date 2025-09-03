@@ -26,7 +26,9 @@ int main(int argc, char **argv) {
     result.emplace("salsa");
     result.emplace("sombrero");
 
-    Core::Deck response = DB::CardRepository::selectCardsByDeckId(0);
+
+    Core::Deck response(0, "", "");
+    DB::CardRepository::selectCardsByDeck(response);
 
     assert(!response.empty());
 

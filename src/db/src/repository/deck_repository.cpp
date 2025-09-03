@@ -2,6 +2,7 @@
 
 #include "db/repository/deck_repository.hpp"
 
+#include "card_deck/deck.hpp"
 #include "db/core/db_manager.hpp"
 #include "db/query/deck_query.hpp"
 
@@ -22,7 +23,7 @@ namespace DB {
         return query.exec();
     }
 
-    bool DeckRepository::removeDeck(const int deckId) {
+    bool DeckRepository::removeDeck(const Core::Int deckId) {
         QSqlQuery query(DBManager::getInstance().database());
         query.prepare(DeckQueries::deleteDeck);
         query.bindValue(":deck_id", deckId);
@@ -30,15 +31,17 @@ namespace DB {
         return query.exec();
     }
 
-    QList<DeckEntity> DeckRepository::selectAllDecks() {
-        QList<DeckEntity> decks;
+    QList<Core::Deck> DeckRepository::selectAllDecks() {
+        QList<Core::Deck> decks;
         QSqlQuery query(DBManager::getInstance().database());
         query.prepare(DeckQueries::selectAll);
 
         if (query.exec()) {
-            decks.append({query.value(0).toInt(),
-                            query.value(1).toString(),
-                            query.value(2).toString()});
+            Core::Deck deck(query.value(0).toInt(),
+                            query.value(1).toString().toStdString(),
+                            query.value(2).toString().toStdString());
+
+            decks.append(deck);
         }
 
         return decks;

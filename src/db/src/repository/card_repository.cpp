@@ -14,7 +14,7 @@ namespace DB {
         return query.exec();
     }
 
-    bool CardRepository::addCard(const int deckId, const QString &  front, const QString &  back) {
+    bool CardRepository::addCard(const Core::Int deckId, const QString &  front, const QString &  back) {
         QSqlQuery query(DBManager::getInstance().database());
         query.prepare(CardQueries::insertCard);
         query.bindValue(":deck_id", deckId);
@@ -24,7 +24,7 @@ namespace DB {
         return query.exec();
     }
 
-    bool CardRepository::removeCard(const int deckId, const int cardId) {
+    bool CardRepository::removeCard(const Core::Int deckId, const Core::Int cardId) {
         QSqlQuery query(DBManager::getInstance().database());
         query.prepare(CardQueries::deleteCard);
         query.bindValue(":card_id", cardId);
@@ -33,17 +33,14 @@ namespace DB {
         return query.exec();
     }
 
-    Core::Deck CardRepository::selectCardsByDeckId(int deckId) {
-        Core::Deck deck(deckId);
+    bool CardRepository::selectCardsByDeck(Core::Deck & deck) {
         QSqlQuery query(DBManager::getInstance().database());
         query.prepare(CardQueries::selectAll);
-        query.bindValue(":deck_id", deckId);
-
-        qWarning() << query.lastQuery();
+        query.bindValue(":deck_id", deck.getId());
 
         if (!query.exec()) {
             qWarning() << "Failed to select cards:" << query.lastError().text();
-            return deck;
+            return false;
         }
 
         while (query.next()) {
@@ -54,6 +51,6 @@ namespace DB {
             deck.pushBack(card);
         }
 
-        return deck;
+        return true;
     }
 } // namespace DB

@@ -9,15 +9,15 @@ namespace Core {
     public:
         Card(Int id, std::string front, std::string back);
 
-        [[nodiscard]] Int getId() const;
+        [[nodiscard]] Int id() const;
 
-        [[nodiscard]] const std::string &getFront() const;
+        [[nodiscard]] const std::string &front() const;
 
-        [[nodiscard]] const std::string &getBack() const;
+        [[nodiscard]] std::string &front();
 
-        void setFront(std::string front);
+        [[nodiscard]] const std::string &back() const;
 
-        void setBack(std::string back);
+        [[nodiscard]] std::string &back();
 
     private:
         Int id_;

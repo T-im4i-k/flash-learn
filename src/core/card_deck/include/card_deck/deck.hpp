@@ -11,17 +11,17 @@ namespace Core {
     class Deck {
     public:
         explicit Deck(Int id, std::string title, std::string description,
-                      std::initializer_list<Card> cards_list = {});
+                      std::initializer_list<Card> card_list = {});
 
-        [[nodiscard]] Int getId() const;
+        [[nodiscard]] Int id() const;
 
-        [[nodiscard]] const std::string &getTitle() const;
+        [[nodiscard]] const std::string &title() const;
 
-        [[nodiscard]] const std::string &getDescription() const;
+        [[nodiscard]] const std::string &description() const;
 
-        void setTitle(std::string title);
+        [[nodiscard]] std::string &title();
 
-        void setDescription(std::string description);
+        [[nodiscard]] std::string &description();
 
         [[nodiscard]] std::vector<Card> &cardVector();
 

@@ -17,19 +17,17 @@ namespace DB {
         return true;
     }
 
-    DBManager & DBManager::getInstance() {
-        static DBManager instance;
-        return instance;
-    }
-
     QSqlDatabase& DBManager::database() {
         return db_;
     }
 
 
-    DBManager::~DBManager() {
+    bool DBManager::close() {
         if (db_.isOpen()) {
             db_.close();
+            return true;
         }
+
+        return false;
     }
 } // namespace DB

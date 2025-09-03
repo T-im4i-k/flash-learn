@@ -5,15 +5,12 @@
 namespace DB {
     class DBManager {
     public:
-        static DBManager & getInstance();
+        static bool open(const QString & path);
+        static bool close();
 
-        bool open(const QString & path);
-
-        QSqlDatabase& database();
-
-        ~DBManager();
+        static QSqlDatabase& database();
     private:
-        DBManager() = default;
-        QSqlDatabase db_;
+
+        static inline QSqlDatabase db_;
     };
 } // namespace DB

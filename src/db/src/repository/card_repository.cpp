@@ -9,13 +9,13 @@
 namespace DB {
 
     bool CardRepository::createTable() {
-        QSqlQuery query(DBManager::getInstance().database());
+        QSqlQuery query(DBManager::database());
         query.prepare(CardQueries::createTable);
         return query.exec();
     }
 
     bool CardRepository::addCard(const Core::Int deckId, const QString &  front, const QString &  back) {
-        QSqlQuery query(DBManager::getInstance().database());
+        QSqlQuery query(DBManager::database());
         query.prepare(CardQueries::insertCard);
         query.bindValue(":deck_id", deckId);
         query.bindValue(":front", front);
@@ -25,7 +25,7 @@ namespace DB {
     }
 
     bool CardRepository::removeCard(const Core::Int deckId, const Core::Int cardId) {
-        QSqlQuery query(DBManager::getInstance().database());
+        QSqlQuery query(DBManager::database());
         query.prepare(CardQueries::deleteCard);
         query.bindValue(":card_id", cardId);
         query.bindValue(":deck_id", deckId);
@@ -34,9 +34,9 @@ namespace DB {
     }
 
     bool CardRepository::selectCardsByDeck(Core::Deck & deck) {
-        QSqlQuery query(DBManager::getInstance().database());
+        QSqlQuery query(DBManager::database());
         query.prepare(CardQueries::selectAll);
-        query.bindValue(":deck_id", deck.getId());
+        query.bindValue(":deck_id", deck.id());
 
         if (!query.exec()) {
             qWarning() << "Failed to select cards:" << query.lastError().text();
@@ -48,7 +48,7 @@ namespace DB {
                          query.value(1).toString().toStdString(),
                          query.value(2).toString().toStdString());
 
-            deck.pushBack(card);
+            deck.cardVector().push_back(card);
         }
 
         return true;

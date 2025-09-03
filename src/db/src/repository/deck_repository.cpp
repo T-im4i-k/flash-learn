@@ -8,14 +8,14 @@
 
 namespace DB {
     bool DeckRepository::createTable() {
-        QSqlQuery query(DBManager::getInstance().database());
+        QSqlQuery query(DBManager::database());
         query.prepare(DeckQueries::createTable);
 
         return query.exec();
     }
 
     bool DeckRepository::addDeck(const QString& title, const QString& description) {
-        QSqlQuery query(DBManager::getInstance().database());
+        QSqlQuery query(DBManager::database());
         query.prepare(DeckQueries::insertDeck);
         query.bindValue(":title", title);
         query.bindValue(":description", description);
@@ -24,7 +24,7 @@ namespace DB {
     }
 
     bool DeckRepository::removeDeck(const Core::Int deckId) {
-        QSqlQuery query(DBManager::getInstance().database());
+        QSqlQuery query(DBManager::database());
         query.prepare(DeckQueries::deleteDeck);
         query.bindValue(":deck_id", deckId);
 
@@ -33,7 +33,7 @@ namespace DB {
 
     QList<Core::Deck> DeckRepository::selectAllDecks() {
         QList<Core::Deck> decks;
-        QSqlQuery query(DBManager::getInstance().database());
+        QSqlQuery query(DBManager::database());
         query.prepare(DeckQueries::selectAll);
 
         if (query.exec()) {

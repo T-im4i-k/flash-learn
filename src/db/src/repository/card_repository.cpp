@@ -14,14 +14,19 @@ namespace DB {
         return query.exec();
     }
 
-    bool CardRepository::addCard(const Core::Int deckId, const QString &  front, const QString &  back) {
+    Core::Int CardRepository::addCard(const Core::Int deckId, const QString &  front, const QString &  back) {
         QSqlQuery query(DBManager::database());
         query.prepare(CardQueries::insertCard);
         query.bindValue(":deck_id", deckId);
         query.bindValue(":front", front);
         query.bindValue(":back", back);
 
-        return query.exec();
+        if (!query.exec()) {
+            qWarning() << "Failed to insert card:" << query.lastError().text();
+            return -1;
+        }
+
+        return query.lastInsertId().toInt();
     }
 
     bool CardRepository::removeCard(const Core::Int deckId, const Core::Int cardId) {
@@ -34,6 +39,8 @@ namespace DB {
     }
 
     bool CardRepository::selectCardsByDeck(Core::Deck & deck) {
+        deck.cardVector().clear();
+
         QSqlQuery query(DBManager::database());
         query.prepare(CardQueries::selectAll);
         query.bindValue(":deck_id", deck.id());

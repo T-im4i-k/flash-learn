@@ -11,7 +11,7 @@ namespace DB {
 
         static bool createTable();
 
-        static bool addDeck(const QString& title, const QString& description = "");
+        static Core::Int addDeck(const QString& title, const QString& description = "");
 
         static bool removeDeck(Core::Int deckId);
 

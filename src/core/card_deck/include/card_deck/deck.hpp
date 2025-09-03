@@ -10,9 +10,6 @@
 namespace Core {
     class Deck {
     public:
-        using DeckIt = std::vector<Card>::iterator;
-        using ConstDeckIt = std::vector<Card>::const_iterator;
-
         explicit Deck(Int id, std::string title, std::string description,
                       std::initializer_list<Card> cards_list = {});
 
@@ -26,21 +23,9 @@ namespace Core {
 
         void setDescription(std::string description);
 
-        DeckIt erase(DeckIt it);
+        [[nodiscard]] std::vector<Card> &cardVector();
 
-        void pushBack(Card card);
-
-        [[nodiscard]] DeckIt begin();
-
-        [[nodiscard]] DeckIt end();
-
-        [[nodiscard]] ConstDeckIt begin() const;
-
-        [[nodiscard]] ConstDeckIt end() const;
-
-        [[nodiscard]] size_t size() const;
-
-        [[nodiscard]] bool empty() const;
+        [[nodiscard]] const std::vector<Card> &cardVector() const;
 
         void shuffle();
 
@@ -48,7 +33,7 @@ namespace Core {
         Int id_;
         std::string title_;
         std::string description_;
-        std::vector<Card> cards_vector_;
+        std::vector<Card> card_vector_;
         std::mt19937_64 random_engine_;
     };
 } // namespace Core

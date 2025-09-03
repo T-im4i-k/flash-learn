@@ -10,7 +10,7 @@
 namespace Core {
     class Deck {
     public:
-        explicit Deck(Int id, std::string title, std::string description,
+        Deck(Int id, std::string title, std::string description,
                       std::initializer_list<Card> card_list = {});
 
         [[nodiscard]] Int id() const;

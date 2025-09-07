@@ -9,11 +9,11 @@ namespace DB {
     public:
         static bool createTable();
 
-        static Core::Int addCard(Core::Int deckId, const QString &front,
+        static Core::Int addCard(Core::Int deck_id, const QString &front,
                                  const QString &back);
 
-        static bool removeCard(Core::Int deckId, Core::Int cardId);
+        static void removeCard(Core::Int card_id);
 
-        static bool selectCardsByDeck(Core::Deck &deck);
+        static std::vector<Core::Card> getCardsInDeck(Core::Int deck_id);
     };
 } // namespace DB

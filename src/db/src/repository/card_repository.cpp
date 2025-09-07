@@ -14,53 +14,52 @@ namespace DB {
         return query.exec();
     }
 
-    Core::Int CardRepository::addCard(const Core::Int deckId,
+    Core::Int CardRepository::addCard(const Core::Int deck_id,
                                       const QString &front,
                                       const QString &back) {
         QSqlQuery query(DBManager::database());
         query.prepare(CardQueries::insertCard);
-        query.bindValue(":deck_id", deckId);
+        query.bindValue(":deck_id", deck_id);
         query.bindValue(":front", front);
         query.bindValue(":back", back);
 
         if (!query.exec()) {
-            qWarning() << "Failed to insert card:" << query.lastError().text();
-            return -1;
+            throw std::runtime_error(
+                    "CardRepository::addCard: SQL query failed.");
         }
 
         return query.lastInsertId().toInt();
     }
 
-    bool CardRepository::removeCard(const Core::Int deckId,
-                                    const Core::Int cardId) {
+    void CardRepository::removeCard(const Core::Int card_id) {
         QSqlQuery query(DBManager::database());
         query.prepare(CardQueries::deleteCard);
-        query.bindValue(":card_id", cardId);
-        query.bindValue(":deck_id", deckId);
-
-        return query.exec();
+        query.bindValue(":card_id", card_id);
+        if (!query.exec()) {
+            throw std::runtime_error(
+                    "CardRepository::removeCard: SQL query failed.");
+        }
     }
 
-    bool CardRepository::selectCardsByDeck(Core::Deck &deck) {
-        deck.cardVector().clear();
+    std::vector<Core::Card>
+    CardRepository::getCardsInDeck(const Core::Int deck_id) {
 
         QSqlQuery query(DBManager::database());
         query.prepare(CardQueries::selectAll);
-        query.bindValue(":deck_id", deck.id());
+        query.bindValue(":deck_id", deck_id);
 
         if (!query.exec()) {
-            qWarning() << "Failed to select cards:" << query.lastError().text();
-            return false;
+            throw std::runtime_error("CardRepository::getCardsInDeck: SQL "
+                                     "query failed.");
         }
 
+        std::vector<Core::Card> card_vector;
         while (query.next()) {
-            Core::Card card(query.value(0).toInt(),
-                            query.value(1).toString().toStdString(),
-                            query.value(2).toString().toStdString());
-
-            deck.cardVector().push_back(card);
+            card_vector.emplace_back(query.value(0).toInt(),
+                                     query.value(1).toString().toStdString(),
+                                     query.value(2).toString().toStdString());
         }
 
-        return true;
+        return card_vector;
     }
 } // namespace DB

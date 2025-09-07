@@ -4,7 +4,6 @@
 
 #include "card_deck/deck.hpp"
 
-
 namespace DB {
     class DeckRepository {
     public:
@@ -15,6 +14,6 @@ namespace DB {
 
         static bool removeDeck(Core::Int deckId);
 
-        static QList<Core::Deck> selectAllDecks();
+        static void fillDeckRegistry();
     };
 } // namespace DB

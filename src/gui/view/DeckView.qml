@@ -5,28 +5,44 @@ import gui.element
 
 Rectangle {
     id: root
+
     color: "#bebaba"
 
     ListView {
-        interactive: false
         anchors.fill: parent
-
-        spacing: 1
-
-        ListModel {
-            id: decks
-            ListElement { deckId: 0; title: "English A2"; description: "Basic english conversation words" }
-            ListElement { deckId: 1; title: "Spanish C2"; description: "Advanced spanish conversation words" }
-            ListElement { deckId: 2; title: "Common Hungarian Phrases"; description: "Ozot nadyor konvesetes ogyo" }
-            ListElement { deckId: 3; title: "Lesson 5"; description: "" }
-        }
-
+        interactive: false
         model: decks
+        spacing: 1
 
         delegate: DeckItem {
             deckId: model.deckId
-            title: model.title
             description: model.description
+            title: model.title
+        }
+
+        ListModel {
+            id: decks
+
+            ListElement {
+                deckId: 0
+                description: "Basic english conversation words"
+                title: "English A2"
+            }
+            ListElement {
+                deckId: 1
+                description: "Advanced spanish conversation words"
+                title: "Spanish C2"
+            }
+            ListElement {
+                deckId: 2
+                description: "Ozot nadyor konvesetes ogyo"
+                title: "Common Hungarian Phrases"
+            }
+            ListElement {
+                deckId: 3
+                description: ""
+                title: "Lesson 5"
+            }
         }
     }
 }

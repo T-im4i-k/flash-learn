@@ -1,8 +1,8 @@
 #pragma once
 
-#include <vector>
-
 #include "card_deck/deck.hpp"
+
+#include <vector>
 
 namespace Core {
     class DeckRegistry {

@@ -1,13 +1,12 @@
-#include <QSqlError>
-#include <QSqlQuery>
-
 #include "db/repository/card_repository.hpp"
 
 #include "db/core/db_manager.hpp"
 #include "db/query/card_query.hpp"
 
-namespace DB {
+#include <QSqlError>
+#include <QSqlQuery>
 
+namespace DB {
     bool CardRepository::createTable() {
         QSqlQuery query(DBManager::database());
         query.prepare(CardQueries::createTable);
@@ -25,7 +24,7 @@ namespace DB {
 
         if (!query.exec()) {
             throw std::runtime_error(
-                    "CardRepository::addCard: SQL query failed.");
+                "CardRepository::addCard: SQL query failed.");
         }
 
         return query.lastInsertId().toInt();
@@ -37,7 +36,7 @@ namespace DB {
         query.bindValue(":card_id", card_id);
         if (!query.exec()) {
             throw std::runtime_error(
-                    "CardRepository::removeCard: SQL query failed.");
+                "CardRepository::removeCard: SQL query failed.");
         }
     }
 

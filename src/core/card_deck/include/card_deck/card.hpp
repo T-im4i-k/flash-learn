@@ -1,8 +1,8 @@
 #pragma once
 
-#include <string>
-
 #include "alias/alias.hpp"
+
+#include <string>
 
 namespace Core {
     class Card {

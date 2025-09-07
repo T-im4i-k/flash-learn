@@ -1,8 +1,8 @@
 #pragma once
 
-#include <QString>
-
 #include "card_deck/deck.hpp"
+
+#include <QString>
 
 namespace DB {
     class DeckRepository {

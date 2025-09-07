@@ -20,7 +20,6 @@ namespace DB {
 
     QSqlDatabase &DBManager::database() { return db_; }
 
-
     bool DBManager::close() {
         if (db_.isOpen()) {
             db_.close();

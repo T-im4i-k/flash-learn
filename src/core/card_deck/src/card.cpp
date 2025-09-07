@@ -1,8 +1,8 @@
 #include "card_deck/card.hpp"
 
 namespace Core {
-    Card::Card(const Int id, std::string front, std::string back) :
-        id_(id), front_(std::move(front)), back_(std::move(back)) {}
+    Card::Card(const Int id, std::string front, std::string back)
+        : id_(id), front_(std::move(front)), back_(std::move(back)) {}
 
     Int Card::id() const { return id_; }
 
@@ -13,5 +13,4 @@ namespace Core {
     const std::string &Card::back() const { return back_; }
 
     std::string &Card::back() { return back_; }
-
 } // namespace Core

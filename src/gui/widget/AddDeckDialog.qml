@@ -4,45 +4,44 @@ import QtQuick.Layouts
 
 Dialog {
     id: deckDialog
-    title: "New Deck"
-    modal: true
-    width: 300
-    height: 300
-    standardButtons: Dialog.Ok | Dialog.Cancel
+
     anchors.centerIn: parent
+    height: 300
+    modal: true
+    standardButtons: Dialog.Ok | Dialog.Cancel
+    title: "New Deck"
+    width: 300
+
+    onAccepted: {
+        console.log("Deck name:", nameField.text);
+        console.log("Description:", descriptionField.text);
+    }
 
     GridLayout {
-        rows: 2
-        columns: 1
         anchors.fill: parent
+        columns: 1
+        rows: 2
 
         TextField {
             id: nameField
+
             Layout.fillWidth: true
             placeholderText: "Deck name"
         }
-
         TextArea {
             id: descriptionField
-            placeholderText: "Description"
-            Layout.fillWidth: true
-            Layout.fillHeight: true
 
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            placeholderText: "Description"
             wrapMode: TextEdit.Wrap
 
-
-
             background: Rectangle {
-                color: "transparent"
                 border.color: "#888"
                 border.width: 1
+                color: "transparent"
                 radius: 4
             }
         }
-    }
-
-    onAccepted: {
-        console.log("Deck name:", nameField.text)
-        console.log("Description:", descriptionField.text)
     }
 }

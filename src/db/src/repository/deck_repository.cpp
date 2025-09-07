@@ -1,12 +1,12 @@
-#include <QSqlError>
-#include <QSqlQuery>
-
 #include "db/repository/deck_repository.hpp"
 
 #include "card_deck/deck.hpp"
 #include "db/core/db_manager.hpp"
 #include "db/query/deck_query.hpp"
 #include "deck_registry/deck_registry.hpp"
+
+#include <QSqlError>
+#include <QSqlQuery>
 
 namespace DB {
     bool DeckRepository::createTable() {
@@ -24,7 +24,7 @@ namespace DB {
 
         if (!query.exec()) {
             throw std::runtime_error(
-                    "DeckRepository::addDeck: SQL query failed");
+                "DeckRepository::addDeck: SQL query failed");
         }
 
         return query.lastInsertId().toInt();
@@ -49,10 +49,8 @@ namespace DB {
 
         while (query.next()) {
             Core::DeckRegistry::getInstance().deck_vector_.emplace_back(
-                    query.value(0).toInt(),
-                    query.value(1).toString().toStdString(),
-                    query.value(2).toString().toStdString());
+                query.value(0).toInt(), query.value(1).toString().toStdString(),
+                query.value(2).toString().toStdString());
         }
     }
-
 } // namespace DB

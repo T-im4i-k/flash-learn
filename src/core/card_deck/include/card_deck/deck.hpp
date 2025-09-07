@@ -1,17 +1,17 @@
 #pragma once
 
+#include "alias/alias.hpp"
+#include "card_deck/card.hpp"
+
 #include <random>
 #include <string>
 #include <vector>
-
-#include "alias/alias.hpp"
-#include "card_deck/card.hpp"
 
 namespace Core {
     class Deck {
     public:
         Deck(Int id, std::string title, std::string description,
-                      std::initializer_list<Card> card_list = {});
+             std::initializer_list<Card> card_list = {});
 
         [[nodiscard]] Int id() const;
 

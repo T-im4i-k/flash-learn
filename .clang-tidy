@@ -1,15 +1,13 @@
----
 Checks: >
   clang-analyzer-*,
-  cppcoreguidelines-*, 
-  modernize-*, 
-  readability-*, 
-  -cppcoreguidelines-pro-type-reinterpret-cast,
-  -cppcoreguidelines-pro-type-const-cast,
+  cppcoreguidelines-*,
+  modernize-*,
+  readability-*,
+  bugprone-*,
+  portability-*,
+  -readability-identifier-length,
   -modernize-use-trailing-return-type,
-  -readability-magic-numbers
 
 WarningsAsErrors: ''
 HeaderFilterRegex: '.*'
-AnalyzeTemporaryDtors: false
 FormatStyle: file

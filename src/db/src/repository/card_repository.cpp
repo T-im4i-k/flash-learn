@@ -1,5 +1,5 @@
-#include <QSqlQuery>
 #include <QSqlError>
+#include <QSqlQuery>
 
 #include "db/repository/card_repository.hpp"
 
@@ -14,7 +14,9 @@ namespace DB {
         return query.exec();
     }
 
-    Core::Int CardRepository::addCard(const Core::Int deckId, const QString &  front, const QString &  back) {
+    Core::Int CardRepository::addCard(const Core::Int deckId,
+                                      const QString &front,
+                                      const QString &back) {
         QSqlQuery query(DBManager::database());
         query.prepare(CardQueries::insertCard);
         query.bindValue(":deck_id", deckId);
@@ -29,7 +31,8 @@ namespace DB {
         return query.lastInsertId().toInt();
     }
 
-    bool CardRepository::removeCard(const Core::Int deckId, const Core::Int cardId) {
+    bool CardRepository::removeCard(const Core::Int deckId,
+                                    const Core::Int cardId) {
         QSqlQuery query(DBManager::database());
         query.prepare(CardQueries::deleteCard);
         query.bindValue(":card_id", cardId);
@@ -38,7 +41,7 @@ namespace DB {
         return query.exec();
     }
 
-    bool CardRepository::selectCardsByDeck(Core::Deck & deck) {
+    bool CardRepository::selectCardsByDeck(Core::Deck &deck) {
         deck.cardVector().clear();
 
         QSqlQuery query(DBManager::database());
@@ -52,8 +55,8 @@ namespace DB {
 
         while (query.next()) {
             Core::Card card(query.value(0).toInt(),
-                         query.value(1).toString().toStdString(),
-                         query.value(2).toString().toStdString());
+                            query.value(1).toString().toStdString(),
+                            query.value(2).toString().toStdString());
 
             deck.cardVector().push_back(card);
         }

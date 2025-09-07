@@ -8,14 +8,13 @@
 namespace DB {
     class DeckRepository {
     public:
-
         static bool createTable();
 
-        static Core::Int addDeck(const QString& title, const QString& description = "");
+        static Core::Int addDeck(const QString &title,
+                                 const QString &description = "");
 
         static bool removeDeck(Core::Int deckId);
 
         static QList<Core::Deck> selectAllDecks();
-
     };
 } // namespace DB

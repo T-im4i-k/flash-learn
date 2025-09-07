@@ -2,9 +2,10 @@
 
 namespace DB {
 
-    bool DBManager::open(const QString & path) {
-        if (db_.isOpen())
+    bool DBManager::open(const QString &path) {
+        if (db_.isOpen()) {
             return true;
+        }
 
         db_ = QSqlDatabase::addDatabase("QSQLITE");
         db_.setDatabaseName(path);
@@ -17,9 +18,7 @@ namespace DB {
         return true;
     }
 
-    QSqlDatabase& DBManager::database() {
-        return db_;
-    }
+    QSqlDatabase &DBManager::database() { return db_; }
 
 
     bool DBManager::close() {

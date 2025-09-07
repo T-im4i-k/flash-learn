@@ -1,5 +1,5 @@
-#include <QSqlQuery>
 #include <QSqlError>
+#include <QSqlQuery>
 
 #include "db/repository/deck_repository.hpp"
 
@@ -15,13 +15,14 @@ namespace DB {
         return query.exec();
     }
 
-    Core::Int DeckRepository::addDeck(const QString& title, const QString& description) {
+    Core::Int DeckRepository::addDeck(const QString &title,
+                                      const QString &description) {
         QSqlQuery query(DBManager::database());
         query.prepare(DeckQueries::insertDeck);
         query.bindValue(":title", title);
         query.bindValue(":description", description);
 
-        if(!query.exec()) {
+        if (!query.exec()) {
             qWarning() << "Failed to insert deck:" << query.lastError().text();
             return -1;
         }
